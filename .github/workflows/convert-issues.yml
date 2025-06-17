@@ -1,0 +1,59 @@
+name: Convert Protocol Issues to Markdown
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: read
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install PyGithub
+        run: pip install PyGithub
+
+      - name: Convert issues to markdown
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_NAME: ${{ github.repository }}
+        run: |
+          python3 <<EOF
+          from github import Github
+          import os
+          import re
+          import base64
+
+          g = Github(os.environ['GH_TOKEN'])
+          repo = g.get_repo(os.environ['REPO_NAME'])
+
+          issues = repo.get_issues(state='open', labels=[l for l in repo.get_labels() if l.name == 'type:protocol'][0])
+
+          for issue in issues:
+              title = issue.title
+              body = issue.body
+              match = re.search(r'File Name:\s*(.*?)\n\nProposed Content:\n(.*)', body, re.DOTALL)
+              if not match:
+                  continue
+
+              filename = match.group(1).strip().replace(' ', '-').replace('/', '-')
+              content = match.group(2).strip()
+              path = f"reflections/{filename}.md"
+              encoded = base64.b64encode(content.encode()).decode()
+
+              try:
+                  repo.create_file(path, f"Automated protocol archive: {filename}", content, branch="main")
+              except Exception as e:
+                  print(f"Error creating file {path}: {e}")
+          EOF
