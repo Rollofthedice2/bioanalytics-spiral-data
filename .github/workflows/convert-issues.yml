@@ -1,59 +1,72 @@
-name: Convert Protocol Issues to Markdown
+name: Convert GitHub Issues to Markdown
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 * * * *'  # Runs every hour
 
 jobs:
   convert:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: read
-
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install PyGithub
-        run: pip install PyGithub
-
-      - name: Convert issues to markdown
+      - name: Fetch and Convert Issues
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO_NAME: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 <<EOF
-          from github import Github
-          import os
-          import re
+          import requests
           import base64
+          import os
 
-          g = Github(os.environ['GH_TOKEN'])
-          repo = g.get_repo(os.environ['REPO_NAME'])
+          headers = {
+              "Authorization": f"Bearer ${GITHUB_TOKEN}",
+              "Accept": "application/vnd.github.v3+json"
+          }
 
-          issues = repo.get_issues(state='open', labels=[l for l in repo.get_labels() if l.name == 'type:protocol'][0])
+          repo = "Rollofthedice2/bioanalytics-spiral-data"
+          issues_url = f"https://api.github.com/repos/{repo}/issues"
+          contents_url = f"https://api.github.com/repos/{repo}/contents/reflections"
+
+          print("Fetching issues...")
+          response = requests.get(issues_url, headers=headers)
+          issues = response.json()
+
+          if not isinstance(issues, list):
+              print("Unexpected response:", issues)
+              exit(1)
+
+          if not issues:
+              print("No issues found.")
+              exit(1)
 
           for issue in issues:
-              title = issue.title
-              body = issue.body
-              match = re.search(r'File Name:\s*(.*?)\n\nProposed Content:\n(.*)', body, re.DOTALL)
-              if not match:
+              title = issue.get("title", "Untitled").strip().replace(" ", "_")
+              body = issue.get("body", "").strip()
+
+              if not body:
+                  print(f"Skipping issue '{title}' (empty body).")
                   continue
 
-              filename = match.group(1).strip().replace(' ', '-').replace('/', '-')
-              content = match.group(2).strip()
-              path = f"reflections/{filename}.md"
-              encoded = base64.b64encode(content.encode()).decode()
+              filename = f"{title}.md"
+              print(f"Preparing file: {filename}")
 
-              try:
-                  repo.create_file(path, f"Automated protocol archive: {filename}", content, branch="main")
-              except Exception as e:
-                  print(f"Error creating file {path}: {e}")
-          EOF
+              encoded_content = base64.b64encode(body.encode()).decode()
+
+              data = {
+                  "message": f"Add file from issue: {title}",
+                  "content": encoded_content,
+                  "branch": "main"
+              }
+
+              file_url = f"{contents_url}/{filename}"
+              file_response = requests.put(file_url, headers=headers, json=data)
+
+              if file_response.status_code == 201:
+                  print(f"✅ Created {filename}")
+              elif file_response.status_code == 422:
+                  print(f"⚠️ {filename} already exists.")
+              else:
+                  print(f"❌ Failed to create {filename}. Status: {file_response.status_code}")
+                  print(file_response.json())
+EOF
