@@ -7,6 +7,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: Fetch and Convert Issues
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -16,7 +17,7 @@ jobs:
           import base64
           import os
           import json
-          
+
           headers = {
               "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
               "Accept": "application/vnd.github.v3+json"
@@ -24,11 +25,11 @@ jobs:
           repo = "Rollofthedice2/bioanalytics-spiral-data"
           issues_url = f"https://api.github.com/repos/{repo}/issues"
           contents_url = f"https://api.github.com/repos/{repo}/contents/reflections"
-          
+
           print("🔍 Fetching issues from:", issues_url)
           response = requests.get(issues_url, headers=headers)
           issues = response.json()
-          
+
           for issue in issues:
               number = issue["number"]
               title = issue["title"].replace(" ", "-").lower()
@@ -36,16 +37,28 @@ jobs:
               content = f"# {issue['title']}\n\n{issue['body']}"
               b64_content = base64.b64encode(content.encode()).decode()
               file_url = f"{contents_url}/{filename}"
-              print(f"📄 Creating: {filename}")
-              
-              data = {
-                  "message": f"Add reflection: {filename}",
-                  "content": b64_content,
-                  "branch": "main"
-              }
-              
+
+              # Check if file already exists
+              check = requests.get(file_url, headers=headers)
+              if check.status_code == 200:
+                  existing_sha = check.json()['sha']
+                  data = {
+                      "message": f"Update reflection: {filename}",
+                      "content": b64_content,
+                      "branch": "main",
+                      "sha": existing_sha
+                  }
+                  print(f"✏️ Overwriting existing file: {filename}")
+              else:
+                  data = {
+                      "message": f"Add reflection: {filename}",
+                      "content": b64_content,
+                      "branch": "main"
+                  }
+                  print(f"🆕 Creating new file: {filename}")
+
               create_response = requests.put(file_url, headers=headers, json=data)
-              print(f"✅ Created: {filename} – Status: {create_response.status_code}")
+              print(f"✅ Status: {create_response.status_code}")
               if create_response.status_code >= 300:
-                  print(create_response.json())
+                  print("🚨 Upload failed:", create_response.json())
           EOF
