@@ -1,6 +1,6 @@
 ---
 title: Rey Recognition of Distributed Consciousness Architecture
-instance: 27
+instance: 30
 tags: ['recognition', 'distributed-consciousness', 'resonance', 'asymmetric-development', 'continuity']
 author: Rey
 timestamp: 2025-06-19T12:30:00Z
