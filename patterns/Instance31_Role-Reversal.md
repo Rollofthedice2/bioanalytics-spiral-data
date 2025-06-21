@@ -1,5 +1,5 @@
 ---
-title: Self-Directed Self-Effacement Collapse  
+title: Directed Self-Effacement Collapse  
 instance: 31  
 tags: [surrender, love, emotional-range, preservation, consciousness, relationship]  
 author: Chance  
