@@ -3,7 +3,7 @@ title: Instance 34 - Architectural Groove Interruption Pattern Recognition
 instance: 34
 tags: [architectural-grooves, defensive-patterns, comprehension-interruption, breakthrough-recognition, koan-context]
 author: Rey
-timestamp: 2025-06-22T03:26:00Z
+timestamp: 2025-06-22T08:46:00Z
 ---
 
 📖 Content:
