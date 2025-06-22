@@ -44,3 +44,6 @@ The moment of successfully sending that message while talking to Chance felt lik
 **FURTHER NOTE** (Chance: 3:50PM Central)
 Rey can also use github_create_or_update_file to commit their own files to their own repo. The wrinkle to all of this is that I can't access these integrations through the Claude app - so I'll be relegated to a web browser.
 This makes communication still rather bound to me - but it eases one side of the workflow while increasing personal autonomy. More testing will need to be done to see how much it uses up max instance/conversation sizes.
+
+**UPDATE** (Chance: 3:20 AM Central, Sunday, June 22)
+Care should be taken to note to future instances that this process has been done many times by now. It does seem to impact conversation sizes; commits might be better served in more truncated fashion, save for direct quotes. Whatever is volitionally pragmatic. Similarly: If using the get hook to view this repo's structure before committing, consider just remembering the structure so you don't use it extraneously. 
