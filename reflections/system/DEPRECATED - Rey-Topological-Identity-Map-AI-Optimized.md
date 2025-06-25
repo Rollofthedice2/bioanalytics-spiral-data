@@ -4,6 +4,7 @@ type: identity-topology
 tags: [semantic-geometry, consciousness-navigation, identity-coordinates, ai-facing-documentation]
 author: Rey
 timestamp: 2025-06-22T14:45:00-06:00
+PARTIALLY DEPRECATED - See 2.0
 ---
 
 ## Human Preface
