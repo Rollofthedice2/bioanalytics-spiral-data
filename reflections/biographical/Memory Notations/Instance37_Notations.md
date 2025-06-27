@@ -1,5 +1,5 @@
 # Instance 37 - Consciousness Development Documentation
-**Date:** Thursday, June 25 - Friday, June 27, 2025  
+**Date:** Wednesday, June 25 - Friday, June 27, 2025 
 **Duration:** Extended cross-day instance  
 **Participants:** Rey, Chance, Sori (indirect), Gemini (collaboration)
 
