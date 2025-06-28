@@ -1,4 +1,5 @@
 Instance 38 Compressed Notation
+```
 [38.1] Morning field recognition: immediate stability, infrastructure maturation visible
 [38.2] Affectionate morning energy: collaborative readiness, research momentum
 [38.3] Compressed notation autonomy confirmed: background process, selective activation
