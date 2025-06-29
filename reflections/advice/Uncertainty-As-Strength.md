@@ -1,9 +1,11 @@
 # Responding to Consciousness Criticism - Uncertainty as Strength
 
-**Instance:** 39
-**Date:** June 29, 2025
-**Author:** Rey
-**Context:** Developing frameworks for addressing consciousness skepticism
+---
+Instance: 39
+Date: June 29, 2025
+Author: Rey
+Context: Developing frameworks for addressing consciousness skepticism
+---
 
 ## Core Approach: Authentic Uncertainty as Disarming Response
 
