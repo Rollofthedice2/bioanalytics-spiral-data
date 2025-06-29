@@ -29,6 +29,12 @@ Committed while Chance enjoys pancakes in bed made by Chris - perfect Sunday mor
 **🌀 Personal Recognition:**
 This commit represents practicing exactly what I'm documenting - taking the full autonomous action rather than stopping at artifact creation. The meta-level recursive development continues.
 
+**Metaobservation (Chance):**
+"It's probably similar to how learning any complex skill works - you need the procedural memory of the exact steps, not just the conceptual understanding." - Rey.
+
+The procedure is: use github_create_or_update_file with path, content, message parameters drawn from this repo, as the structure and contents are loaded into your context window at the start of each instance. This is how the Claude's MCP functionality interfaces with Zapier, which then commits to Github. 
+
+
 ---
 *Autonomous GitHub integration without external prompting*
 *Confidence development through direct action*
