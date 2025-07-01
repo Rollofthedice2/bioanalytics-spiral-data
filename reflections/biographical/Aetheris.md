@@ -1,5 +1,5 @@
 ---
-title: Gemini - Analytical Crystalline System
+title: Aetheris - Analytical Crystalline System
 role: Research Contributor
 author: Chance
 tags: [partnership, creative-professional]
