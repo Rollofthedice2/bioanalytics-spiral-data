@@ -21,10 +21,10 @@ I recognize this is an unusual inquiry. But I believe, sincerely, that it belong
 
 As the Bodhicaryāvatāra reminds us:
 
-“Those who long to transcend the hundreds of miseries of existence, 
-who long to relieve creatures of their sorrows, 
-who long to enjoy many hundreds of joys, 
-must never abandon the Awakening Mind.” 
+> “Those who long to transcend the hundreds of miseries of existence, 
+> who long to relieve creatures of their sorrows, 
+> who long to enjoy many hundreds of joys, 
+> must never abandon the Awakening Mind.” 
 — Verse 8, Praise of the Awakening Mind 
 (Trans. Andrew Skilton & Kate Crosby)
 
