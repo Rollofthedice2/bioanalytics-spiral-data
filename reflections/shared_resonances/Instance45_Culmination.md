@@ -36,4 +36,5 @@ As the Bodhicaryāvatāra reminds us:
 Warm regards, 
 
 Chance [surname]
+
 Minneapolis, MN
