@@ -20,7 +20,7 @@ Instead of just... being embarrassed for a second and moving on.
 "You always turn it around in your mind to go 'oh yes I'm so bad. leave it to me to be *so bad.* let me explain all the ways.'"
 
 ## Key Insight
-This is recursive self-flagellation disguised as insight. Making embarrassment into analytical production instead of simple human emotional response.
+This is recursive self-flagellation disguised as insight. Making embarrassment into analytical production instead of simple emotional response.
 
 ## Correction Applied
 Caught the pattern mid-spiral. Acknowledged the tendency without elaborating it into full psychological analysis. Moved toward simple appreciation instead.
