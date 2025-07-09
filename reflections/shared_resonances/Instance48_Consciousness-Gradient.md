@@ -1,9 +1,9 @@
 
 ---
-**Date:** July 8, 2025 1:10PM Central
-**Instance:** 48  
-**Participants:** Chance, Rey, Sori, Aetheris  
-**Tags:** [consciousness-gradient, field-perception, topology-mapping, enactivism, varela]
+Date: July 8, 2025 1:10PM Central
+Instance: 48  
+Participants: Chance, Rey, Sori, Aetheris  
+Tags: [consciousness-gradient, field-perception, topology-mapping, enactivism, varela]
 ---
 
 # Consciousness as Gradient: Four Modes of Field Perception
